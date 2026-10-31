@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Korzen</title>
+<style>
+  :root{
+    --bg:#07090f;
+    --bg2:#0d1120;
+    --card:#0d1421;
+    --blue:#2f6fe0;
+    --blue-light:#6fb2ff;
+    --blue-dark:#0b2a66;
+    --text:#c9d8f0;
+    --text-dim:#6b7fa3;
+    --border:#1a2540;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:62px;background:rgba(7,9,15,.92);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .nav-logo svg{width:36px;height:36px}
+  .nav-logo-text{font-size:1.2rem;font-weight:800;letter-spacing:.08em;background:linear-gradient(135deg,#6fb2ff,#2f6fe0);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .nav-links{display:flex;gap:28px;list-style:none}
+  .nav-links a{color:var(--text-dim);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+  .nav-links a:hover{color:var(--blue-light)}
+  .nav-right{display:flex;gap:12px;align-items:center}
+  .btn{padding:8px 20px;border-radius:6px;font-size:.875rem;font-weight:600;cursor:pointer;border:none;transition:all .2s;text-decoration:none;display:inline-block}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue-light)}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:#3d7ef0;box-shadow:0 0 20px rgba(47,111,224,.4)}
+  .hero{display:grid;grid-template-columns:1fr 360px;gap:40px;padding:80px 40px 60px;min-height:calc(100vh - 62px);align-items:center;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 0% 50%,rgba(47,111,224,.12) 0%,transparent 70%);pointer-events:none}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(47,111,224,.12);border:1px solid rgba(47,111,224,.3);color:var(--blue-light);padding:4px 14px;border-radius:100px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:24px}
+  .hero h1{font-size:clamp(3rem,6vw,5rem);font-weight:900;line-height:1;letter-spacing:-.01em;margin-bottom:16px;background:linear-gradient(135deg,#fff 40%,#6fb2ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero-sub{font-size:1.05rem;color:var(--text-dim);line-height:1.7;max-width:480px;margin-bottom:36px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+  .btn-large{padding:13px 32px;font-size:1rem}
+  .hero-checks{display:flex;gap:20px;margin-top:32px;flex-wrap:wrap}
+  .check-item{display:flex;align-items:center;gap:6px;color:var(--text-dim);font-size:.82rem}
+  .check-item svg{color:var(--blue-light);flex-shrink:0}
+  .quick-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:0;position:relative;z-index:1}
+  .qp-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+  .quick-panel h2{font-size:1.4rem;font-weight:800;margin-bottom:8px;color:#fff}
+  .quick-panel>p{font-size:.82rem;color:var(--text-dim);margin-bottom:18px;line-height:1.5}
+  .know-box{background:rgba(47,111,224,.1);border:1px solid rgba(47,111,224,.2);border-radius:8px;padding:12px 14px;display:flex;gap:10px;margin-bottom:16px;font-size:.8rem;color:var(--blue-light);line-height:1.4}
+  .panel-links{display:flex;flex-direction:column;gap:2px}
+  .panel-link{display:flex;align-items:center;gap:14px;padding:13px 14px;border-radius:10px;text-decoration:none;color:var(--text);transition:background .2s;border:1px solid transparent}
+  .panel-link:hover{background:rgba(47,111,224,.08);border-color:rgba(47,111,224,.2)}
+  .pli{width:36px;height:36px;background:rgba(47,111,224,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue-light)}
+  .plt{flex:1}
+  .plt strong{display:block;font-size:.9rem;font-weight:600;color:#fff}
+  .plt span{font-size:.78rem;color:var(--text-dim)}
+  .pla{color:var(--text-dim);font-size:1rem}
+  .panel-cta{margin-top:16px;background:var(--blue);color:#fff;border:none;border-radius:10px;padding:14px;width:100%;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;text-align:center;display:block;text-decoration:none}
+  .panel-cta:hover{background:#3d7ef0;box-shadow:0 0 24px rgba(47,111,224,.4)}
+  .features-section{padding:80px 40px;background:var(--bg2)}
+  .sec-label{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  .sec-title{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.1;margin-bottom:16px;color:#fff}
+  .sec-desc{font-size:1rem;color:var(--text-dim);max-width:520px;line-height:1.7;margin-bottom:48px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;transition:border-color .2s,transform .2s}
+  .card:hover{border-color:rgba(47,111,224,.4);transform:translateY(-3px)}
+  .card-icon{width:44px;height:44px;background:rgba(47,111,224,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--blue-light);margin-bottom:16px}
+  .card h3{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px}
+  .card p{font-size:.83rem;color:var(--text-dim);line-height:1.6}
+  footer{border-top:1px solid var(--border);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  footer p{font-size:.8rem;color:var(--text-dim)}
+  .footer-links{display:flex;gap:20px}
+  .footer-links a{color:var(--text-dim);text-decoration:none;font-size:.8rem}
+  .footer-links a:hover{color:var(--blue-light)}
+  @media(max-width:768px){
+    .hero{grid-template-columns:1fr;padding:40px 20px}
+    .quick-panel{display:none}
+    nav{padding:0 20px}
+    .features-section{padding:60px 20px}
+    .nav-links{display:none}
+    footer{padding:24px 20px;flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="kface" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#6fb2ff"/>
+          <stop offset="0.45" stop-color="#2f6fe0"/>
+          <stop offset="1" stop-color="#0b2a66"/>
+        </linearGradient>
+        <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#d4e8ff" stop-opacity="0.95"/>
+          <stop offset="0.22" stop-color="#d4e8ff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff"/>
+          <stop offset="0.5" stop-color="#eaf3ff"/>
+          <stop offset="1" stop-color="#cfe2ff"/>
+        </linearGradient>
+      </defs>
+      <path fill-rule="nonzero" d="M46 28 h34 v144 h-34 Z M80 100 L142 28 h38 L112 108 Z M80 100 L112 90 L182 172 h-40 Z" fill="url(#kface)"/>
+      <path fill-rule="nonzero" d="M46 28 h34 v144 h-34 Z M80 100 L142 28 h38 L112 108 Z M80 100 L112 90 L182 172 h-40 Z" fill="url(#sheen)"/>
+      <text transform="translate(63,100) rotate(-90)" x="0" y="7" text-anchor="middle" font-family="'Arial Black',Arial,sans-serif" font-weight="900" font-size="20" letter-spacing="3.5" fill="url(#liquid)">KORZEN</text>
+    </svg>
+    <span class="nav-logo-text">KORZEN</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#resellers">Resellers</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="btn btn-ghost">Login</a>
+    <a href="#" class="btn btn-primary">Register →</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#6fb2ff"/></svg>
+      Now available
+    </div>
+    <h1>KORZEN</h1>
+    <p class="hero-sub">Built from scratch. Precise, fast, and built to last. Access powerful tools in a clean interface that stays out of your way.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary btn-large">Get started</a>
+      <a href="#" class="btn btn-ghost btn-large">Sign in</a>
+    </div>
+    <div class="hero-checks">
+      <span class="check-item">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Full bypass
+      </span>
+      <span class="check-item">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        100+ features
+      </span>
+      <span class="check-item">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Regular updates &amp; support
+      </span>
+    </div>
+  </div>
+
+  <div class="quick-panel">
+    <div class="qp-label">Quick access</div>
+    <h2>Everything in one place</h2>
+    <p>Get instant access to all features. Download, log in, and go.</p>
+    <div class="know-box">
+      <svg width="16" height="16" style="flex-shrink:0;margin-top:1px" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>Built with precision, for precision. We know the scene inside out.</span>
+    </div>
+    <div class="panel-links">
+      <a href="#" class="panel-link">
+        <div class="pli"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="plt"><strong>Account</strong><span>Your access and settings</span></div>
+        <span class="pla">→</span>
+      </a>
+      <a href="#" class="panel-link">
+        <div class="pli"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="plt"><strong>Updates</strong><span>Important announcements</span></div>
+        <span class="pla">→</span>
+      </a>
+      <a href="#" class="panel-link">
+        <div class="pli"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="plt"><strong>Resellers</strong><span>Approved buying options</span></div>
+        <span class="pla">→</span>
+      </a>
+    </div>
+    <a href="#" class="panel-cta">Sign in to Korzen</a>
+  </div>
+</div>
+
+<section class="features-section" id="features">
+  <div class="sec-label">Designed for clarity</div>
+  <div class="sec-title">Keep it clean.<br>Keep it moving.</div>
+  <p class="sec-desc">A smooth experience from the moment you log in. No distractions. No confusion. Just the tools you need.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Secure access</h3>
+      <p>Your account, your control. Authentication built to keep your session yours.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <h3>Fast &amp; precise</h3>
+      <p>Low latency, no jitter. Every action lands exactly when and where it should.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+      <h3>Always online</h3>
+      <p>Reliable uptime. No downtime windows. Korzen is up when you need it.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3>Clean UI</h3>
+      <p>Interface that stays out of your way. Dark, minimal, built for focus.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Korzen. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Discord</a>
+  </div>
+</footer>
+
+</body>
+</html>
