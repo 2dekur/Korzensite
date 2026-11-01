@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Korzen | Buy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#060812;--card:#0f1220;--card2:#121628;
+--blue:#2f6fe0;--blue2:#6fb2ff;--blue3:#1a4db8;--blue-glow:rgba(47,111,224,.35);
+--text:#c8d6f0;--dim:#4a5a7e;--white:#eef2ff;--border:#1a2040;--border2:#242c52;
+--green:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',system-ui,sans-serif;overflow-x:hidden;min-height:100vh;cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8' fill='%232f6fe0' opacity='.7'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%236fb2ff'/%3E%3Ccircle cx='12' cy='12' r='1.5' fill='white'/%3E%3C/svg%3E") 12 12,auto}
+a{cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='10' fill='%232f6fe0' opacity='.8'/%3E%3Ccircle cx='14' cy='14' r='6' fill='%236fb2ff' opacity='.9'/%3E%3Ccircle cx='14' cy='14' r='2.5' fill='white'/%3E%3Ccircle cx='9' cy='9' r='1' fill='white' opacity='.5'/%3E%3C/svg%3E") 14 14,pointer}
+::selection{background:var(--blue);color:#fff}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 30%,rgba(30,60,140,.2),transparent 60%),radial-gradient(ellipse 50% 40% at 80% 70%,rgba(15,30,80,.15),transparent 50%);pointer-events:none;z-index:0}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);height:56px;background:rgba(6,8,18,.92);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(16px)}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo svg{width:28px;height:28px}
+.logo-name{font-family:'Orbitron',sans-serif;font-size:.95rem;font-weight:900;letter-spacing:.08em;color:var(--white)}
+.nav-links{display:flex;gap:6px;list-style:none;align-items:center}
+.nav-links a{color:var(--dim);text-decoration:none;font-size:.82rem;font-weight:600;padding:6px 12px;border-radius:6px;transition:all .2s;letter-spacing:.03em;text-transform:uppercase}
+.nav-links a:hover,.nav-links a.active{color:var(--blue2);background:rgba(47,111,224,.08)}
+.nav-r{display:flex;gap:8px;align-items:center}
+.discord-link{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(47,111,224,.08);border:1px solid var(--border);transition:all .2s;text-decoration:none}
+.discord-link:hover{background:rgba(47,111,224,.18);border-color:var(--blue)}
+.discord-link svg{width:18px;height:18px;fill:var(--blue2)}
+.lang-switch{display:flex;gap:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;font-size:.72rem;font-weight:700}
+.lang-btn{padding:5px 10px;background:transparent;color:var(--dim);border:none;cursor:pointer;transition:all .2s;font-family:inherit;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.lang-btn.active{background:var(--blue);color:#fff}
+.lang-btn:hover:not(.active){color:var(--blue2)}
+
+/* PAGE */
+.buy-page{display:flex;flex-direction:column;align-items:center;padding:56px clamp(16px,4vw,48px) 72px;position:relative;z-index:1}
+.buy-page h1{font-family:'Orbitron',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:900;color:var(--white);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px;text-align:center}
+.buy-page .sub{font-size:.88rem;color:var(--dim);margin-bottom:40px;text-align:center}
+
+/* PRICING CARD */
+.pricing{position:relative;width:100%;max-width:400px}
+.pricing::before{content:'';position:absolute;inset:-2px;border-radius:18px;background:linear-gradient(135deg,var(--blue),var(--blue3),rgba(47,111,224,.2));z-index:-1;opacity:.6}
+.pricing-card{background:linear-gradient(180deg,var(--card) 0%,#080b14 100%);border-radius:16px;padding:0;overflow:hidden;position:relative}
+.pricing-top{padding:28px 28px 20px;text-align:center;position:relative}
+.pricing-badge{display:inline-block;padding:4px 14px;border-radius:20px;background:linear-gradient(135deg,var(--blue),var(--blue3));color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.pricing-name{font-family:'Orbitron',sans-serif;font-size:1.3rem;font-weight:900;color:var(--white);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.pricing-desc{font-size:.76rem;color:var(--dim);margin-bottom:18px}
+.pricing-price{font-family:'Orbitron',sans-serif;font-size:3rem;font-weight:900;color:var(--blue2);line-height:1;margin-bottom:4px}
+.pricing-period{font-size:.82rem;color:var(--dim);margin-bottom:4px}
+.pricing-note{font-size:.72rem;color:var(--dim);opacity:.7}
+
+.pricing-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 28px}
+
+.pricing-features{padding:20px 28px 24px;list-style:none}
+.pricing-features li{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.84rem;color:var(--text);border-bottom:1px solid rgba(255,255,255,.03)}
+.pricing-features li:last-child{border-bottom:none}
+.pricing-features li svg{width:16px;height:16px;fill:none;stroke:var(--green);stroke-width:2.5;flex-shrink:0}
+.pricing-features li .info{margin-left:auto;width:16px;height:16px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--dim);flex-shrink:0}
+
+.pricing-bottom{padding:0 28px 28px}
+.purchase-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue3));color:#fff;font-family:'Orbitron',sans-serif;font-size:.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;text-transform:uppercase;letter-spacing:.06em}
+.purchase-btn:hover{box-shadow:0 0 32px var(--blue-glow),0 6px 24px rgba(0,0,0,.4);transform:translateY(-2px)}
+.purchase-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5}
+.redeem{display:block;text-align:center;margin-top:14px;font-size:.82rem;font-weight:700;color:var(--white);text-decoration:none;transition:color .2s}
+.redeem:hover{color:var(--blue2)}
+
+footer{border-top:1px solid var(--border);padding:24px clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+footer p{font-size:.72rem;color:var(--dim)}
+.f-links{display:flex;gap:16px}
+.f-links a{color:var(--dim);text-decoration:none;font-size:.72rem;transition:color .2s;font-weight:600}
+.f-links a:hover{color:var(--blue2)}
+
+@media(max-width:860px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .buy-page{padding:36px 16px 56px}
+  footer{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+      <defs>
+        <linearGradient id="kf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6fb2ff"/><stop offset=".45" stop-color="#2f6fe0"/><stop offset="1" stop-color="#0b2a66"/></linearGradient>
+        <linearGradient id="sh" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4e8ff" stop-opacity=".95"/><stop offset=".22" stop-color="#d4e8ff" stop-opacity="0"/></linearGradient>
+        <linearGradient id="lq" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#eaf3ff"/><stop offset="1" stop-color="#cfe2ff"/></linearGradient>
+      </defs>
+      <path fill-rule="nonzero" d="M46 28h34v144H46ZM80 100L142 28h38L112 108ZM80 100l32-10 70 82h-40Z" fill="url(#kf)"/>
+      <path fill-rule="nonzero" d="M46 28h34v144H46ZM80 100L142 28h38L112 108ZM80 100l32-10 70 82h-40Z" fill="url(#sh)"/>
+      <text transform="translate(63,100) rotate(-90)" x="0" y="7" text-anchor="middle" font-family="Arial Black,Arial,sans-serif" font-weight="900" font-size="20" letter-spacing="3.5" fill="url(#lq)">KORZEN</text>
+    </svg>
+    <span class="logo-name">KORZEN</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#features" data-en="Features" data-fr="Features">Features</a></li>
+    <li><a href="buy.html" class="active" data-en="Buy Korzen" data-fr="Acheter Korzen">Buy Korzen</a></li>
+    <li><a href="changelogs.html" data-en="Changelogs" data-fr="Changelogs">Changelogs</a></li>
+  </ul>
+  <div class="nav-r">
+    <a href="https://discord.gg/PBMstenVXf" target="_blank" rel="noopener" class="discord-link" title="Discord">
+      <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    </a>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    </div>
+  </div>
+</nav>
+
+<div class="buy-page">
+  <h1 data-en="Buy Korzen" data-fr="Acheter Korzen">Buy Korzen</h1>
+  <p class="sub" data-en="Get access to the full Korzen experience." data-fr="Accède à l'expérience complète Korzen.">Get access to the full Korzen experience.</p>
+
+  <div class="pricing">
+    <div class="pricing-card">
+      <div class="pricing-top">
+        <div class="pricing-badge" data-en="Enhanced" data-fr="Enhanced">Enhanced</div>
+        <div class="pricing-name">Korzen Menu</div>
+        <div class="pricing-desc" data-en="Enhanced Version — Full Access" data-fr="Version Enhanced — Accès complet">Enhanced Version — Full Access</div>
+        <div class="pricing-price" data-en="Soon" data-fr="Bientôt">Soon</div>
+        <div class="pricing-period" data-en="Lifetime" data-fr="À vie">Lifetime</div>
+        <div class="pricing-note" data-en="Price announced when beta ends" data-fr="Prix annoncé à la fin de la bêta">Price announced when beta ends</div>
+      </div>
+
+      <div class="pricing-divider"></div>
+
+      <ul class="pricing-features">
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="All Basic Features" data-fr="Toutes les fonctionnalités de base">All Basic Features</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Full Protections" data-fr="Protections complètes">Full Protections</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Vehicle Spawner" data-fr="Spawn de véhicules">Vehicle Spawner</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Kicks &amp; Crashes" data-fr="Kicks &amp; Crashes">Kicks &amp; Crashes</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Unlock All" data-fr="Tout débloquer">Unlock All</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Money + RP Drops" data-fr="Money + RP Drops">Money + RP Drops</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Free Shopping" data-fr="Achats gratuits">Free Shopping</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Unlock GTA+" data-fr="Débloquer GTA+">Unlock GTA+</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Aimbot &amp; Weapons" data-fr="Aimbot &amp; Armes">Aimbot &amp; Weapons</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Movement Hacks" data-fr="Hacks de mouvement">Movement Hacks</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Full Online Bypass" data-fr="Bypass en ligne complet">Full Online Bypass</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Regular Updates" data-fr="Mises à jour régulières">Regular Updates</span><span class="info">?</span></li>
+        <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span data-en="Priority Support" data-fr="Support prioritaire">Priority Support</span><span class="info">?</span></li>
+      </ul>
+
+      <div class="pricing-bottom">
+        <a href="https://www.paypal.com/paypalme/KorzenDekurdo" target="_blank" rel="noopener" class="purchase-btn" data-en="Purchase →" data-fr="Acheter →">Purchase <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#" class="redeem" data-en="Redeem Key" data-fr="Utiliser une clé">Redeem Key</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Korzen. All rights reserved.</p>
+  <div class="f-links">
+    <a href="https://discord.gg/PBMstenVXf" target="_blank" rel="noopener">Discord</a>
+    <a href="index.html">Home</a>
+    <a href="changelogs.html">Changelogs</a>
+  </div>
+</footer>
+
+<script>
+function setLang(lang){
+  document.documentElement.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim().toLowerCase()===lang);
+  });
+  document.querySelectorAll('[data-'+lang+']').forEach(el=>{
+    const t=el.getAttribute('data-'+lang);
+    if(t)el.textContent=t;
+  });
+  try{localStorage.setItem('korzen-lang',lang)}catch(e){}
+}
+try{const s=localStorage.getItem('korzen-lang');if(s==='fr')setLang('fr')}catch(e){}
+</script>
+
+</body>
+</html>
