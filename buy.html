@@ -63,7 +63,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 clam
 
 .pricing-bottom{padding:0 28px 28px}
 .purchase-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--blue3));color:#fff;font-family:'Orbitron',sans-serif;font-size:.88rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .25s;text-transform:uppercase;letter-spacing:.06em}
-.purchase-btn:hover{box-shadow:0 0 32px var(--blue-glow),0 6px 24px rgba(0,0,0,.4);transform:translateY(-2px)}
+.purchase-btn.disabled{background:#2a2d3a;color:#5a5e70;pointer-events:none;cursor:default}
+.purchase-btn:hover:not(.disabled){box-shadow:0 0 32px var(--blue-glow),0 6px 24px rgba(0,0,0,.4);transform:translateY(-2px)}
 .purchase-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.5}
 .redeem{display:block;text-align:center;margin-top:14px;font-size:.82rem;font-weight:700;color:var(--white);text-decoration:none;transition:color .2s}
 .redeem:hover{color:var(--blue2)}
@@ -148,7 +149,7 @@ footer p{font-size:.72rem;color:var(--dim)}
       </ul>
 
       <div class="pricing-bottom">
-        <a href="https://www.paypal.com/paypalme/KorzenDekurdo" target="_blank" rel="noopener" class="purchase-btn" data-en="Purchase →" data-fr="Acheter →">Purchase <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <span class="purchase-btn disabled" data-en="Not yet available" data-fr="Pas encore disponible">Not yet available</span>
         <a href="#" class="redeem" data-en="Redeem Key" data-fr="Utiliser une clé">Redeem Key</a>
       </div>
     </div>
